@@ -1,74 +1,87 @@
 function checkMenu(cellCoords) {
-    for (var i = 0; i < shopInfo.length; i++) {
-        if (cellCoords.x == shopInfo[i].coor.x && cellCoords.y == shopInfo[i].coor.y) {
-            desplayMenu(shopInfo[i]);
+    for (var i = 0; i < menu_app.$data.shop_info.length; i++) {
+        if (cellCoords.x == menu_app.$data.shop_info[i].coor.x && cellCoords.y == menu_app.$data.shop_info[i].coor.y) {
+            menu_app.$data.select_idx = i;
+            document.getElementById("modal-button").click();
+            console.log(menu_app.$data.shop_info[menu_app.$data.select_idx]);
         }
     }
 }
 
-function desplayMenu(shop) {
-    document.getElementById("modal-button").click();
-    console.log(shop);
-
-    document.getElementById("exampleModalLabel").textContent = "Menu of " + shop.name;
-
-    document.getElementById("menu-things").innerHTML = "";
-
-    for (var i = 0; i < shop.menu_data.length; i++) {
-        var div_row = document.createElement("div");
-        div_row.className = "row";
-        var div_col1 = document.createElement("div");
-        div_col1.className = "col-8";
-        var div_col2 = document.createElement("div");
-        div_col2.className = "col-4";
-        var hr = document.createElement("hr");
-        hr.className = "my-4";
-
-        var food_name = document.createElement("h3");
-        food_name.textContent = shop.menu_data[i].food_name;
-        var food_prize = document.createElement("h5");
-        food_prize.textContent = "$" + shop.menu_data[i].food_prize;
-
-        var img = document.createElement("img");
-        img.src = shop.menu_data[i].food_image_url;
-        img.className = "rounded";
-        img.style["width"] = "100";
-        img.style["height"] = "100";
-
-        div_col1.appendChild(food_name);
-        div_col1.appendChild(food_prize);
-
-        div_col2.appendChild(img);
-        
-        div_row.appendChild(div_col1);
-        div_row.appendChild(div_col2);
-        
-        document.getElementById("menu-things").appendChild(div_row);
-        document.getElementById("menu-things").appendChild(hr);
-    }
-}
-
-var shopInfo = [
-    {
-        coor: {
-            x: 9, y: 9
-        },
-        stand_id: 1,
-        stand_name: "章魚燒",
-        stand_image: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg",
-        menu_data: [
+var menu_app = new Vue({
+    el: '#menu-app',
+    data: {
+        shop_info: [
             {
-                food_id: 1,
-                food_name: "海苔章魚燒",
-                food_prize: 50,
-                food_image_url: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg"
+                coor: {
+                    x: 9, y: 9
+                },
+                stand_id: 0,
+                stand_name: "章魚燒",
+                stand_image: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg",
+                menu_data: [
+                    {
+                        food_id: 1,
+                        food_name: "海苔章魚燒",
+                        food_price: 50,
+                        food_image_url: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg"
+                    },
+                    {
+                        food_id: 2,
+                        food_name: "原味章魚燒",
+                        food_price: 50,
+                        food_image_url: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg"
+                    }
+                ]
             },
             {
-                food_id: 2,
-                food_name: "原味章魚燒",
-                food_prize: 50,
-                food_image_url: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg"
+                coor: {
+                    x: 7, y: 9
+                },
+                stand_id: 0,
+                stand_name: "滷味",
+                stand_image: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg",
+                menu_data: [
+                    {
+                        food_id: 1,
+                        food_name: "豆干",
+                        food_price: 50,
+                        food_image_url: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg"
+                    },
+                    {
+                        food_id: 2,
+                        food_name: "海帶",
+                        food_price: 50,
+                        food_image_url: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg"
+                    }
+                ]
             }
-        ]
+        ],
+        select_idx: 0,
+        select_items: [],
+        total_charge: 0
+    },
+    methods: {
+        add_item: function(idx){
+            var select_shop_idx = this.$data.select_idx
+            var item_name = this.$data.shop_info[select_shop_idx].menu_data[idx].food_name;
+            var item_price = this.$data.shop_info[select_shop_idx].menu_data[idx].food_price;
+            this.$data.select_items.push({
+                food_name: item_name,
+                food_price: item_price
+            })
+            this.update_total_charge();
+        },
+        delete_item: function (idx) {
+            console.log(idx);
+            this.$data.select_items.splice(idx, 1);
+            this.update_total_charge();
+        },
+        update_total_charge: function () {
+            this.$data.total_charge = 0;
+            for (var i = 0; i < this.$data.select_items.length; i++) {
+                this.$data.total_charge += this.$data.select_items[i].food_price;
+            }
+        }
     }
-]
+})
