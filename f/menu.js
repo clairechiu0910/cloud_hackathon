@@ -80,6 +80,7 @@ var menu_app = new Vue({
         },
         clear_item: function(){
             this.$data.select_items = [];
+            this.$data.total_charge = 0;
         },
         update_total_charge: function () {
             this.$data.total_charge = 0;

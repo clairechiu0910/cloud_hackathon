@@ -60,7 +60,14 @@
                                         </div>
                                         <hr class="my-4">
                                     </template>
-                                    <h5>Selected</h5>
+                                    <div class="row mb-4">
+                                        <div class="col-10">
+                                            <h5>Selected</h5>
+                                        </div>
+                                        <div class="col-2">
+                                            <button v-on:click="clear_item()" type="button" class="btn btn-secondary btn-sm">Clear</button>
+                                        </div>
+                                    </div>
                                     <template v-for="(item, idx) in select_items">
                                         <div class="row">
                                             <div class="col-7">
