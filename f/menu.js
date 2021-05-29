@@ -3,7 +3,7 @@ function checkMenu(cellCoords) {
         if (cellCoords.x == menu_app.$data.shop_info[i].coor.x && cellCoords.y == menu_app.$data.shop_info[i].coor.y) {
             menu_app.$data.select_idx = i;
             document.getElementById("modal-button").click();
-            console.log(menu_app.$data.shop_info[menu_app.$data.select_idx]);
+            menu_app.clear_item();
         }
     }
 }
@@ -77,6 +77,9 @@ var menu_app = new Vue({
             console.log(idx);
             this.$data.select_items.splice(idx, 1);
             this.update_total_charge();
+        },
+        clear_item: function(){
+            this.$data.select_items = [];
         },
         update_total_charge: function () {
             this.$data.total_charge = 0;
