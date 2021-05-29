@@ -69,6 +69,8 @@ var menu_app = new Vue({
             })
                 .then(function (response) {
                     console.log(response);
+                    alert("order success!!");
+                    document.getElementById("modal-button").click();
                 })
                 .catch(function (error) {
                     console.log(error);
