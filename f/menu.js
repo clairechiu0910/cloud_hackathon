@@ -14,51 +14,61 @@ function desplayMenu(shop) {
 
     document.getElementById("menu-things").innerHTML = "";
 
-    for (var i = 0; i < shop.menu.length; i++) {
-        var div = document.createElement("div");
-        var checkbox = document.createElement("input");
-        var label = document.createElement("label");
+    for (var i = 0; i < shop.menu_data.length; i++) {
+        var div_row = document.createElement("div");
+        div_row.className = "row";
+        var div_col1 = document.createElement("div");
+        div_col1.className = "col-8";
+        var div_col2 = document.createElement("div");
+        div_col2.className = "col-4";
+        var hr = document.createElement("hr");
+        hr.className = "my-4";
 
-        div.className = "form-check";
+        var food_name = document.createElement("h3");
+        food_name.textContent = shop.menu_data[i].food_name;
+        var food_prize = document.createElement("h5");
+        food_prize.textContent = "$" + shop.menu_data[i].food_prize;
 
-        checkbox.type = "checkbox";
-        checkbox.className = "form-check-input";
-        checkbox.value = label.textContent = shop.menu[i];
-        checkbox.style["margin-right"] = "3%";
+        var img = document.createElement("img");
+        img.src = shop.menu_data[i].food_image_url;
+        img.className = "rounded";
+        img.style["width"] = "100";
+        img.style["height"] = "100";
 
-        label.className = "form-check-label";
+        div_col1.appendChild(food_name);
+        div_col1.appendChild(food_prize);
 
-        div.appendChild(checkbox);
-        div.appendChild(label);
-
-        document.getElementById("menu-things").appendChild(div);
+        div_col2.appendChild(img);
+        
+        div_row.appendChild(div_col1);
+        div_row.appendChild(div_col2);
+        
+        document.getElementById("menu-things").appendChild(div_row);
+        document.getElementById("menu-things").appendChild(hr);
     }
 }
 
 var shopInfo = [
     {
-        id: 0,
-        name: "shop1",
         coor: {
-            x: 9,
-            y: 9
+            x: 9, y: 9
         },
-        menu: ["hello11", "hello12"]
-    }, {
-        id: 1,
-        name: "shop2",
-        coor: {
-            x: 5,
-            y: 5
-        },
-        menu: ["hello21", "hello22"]
-    }, {
-        id: 2,
-        name: "shop3",
-        coor: {
-            x: 1,
-            y: 0
-        },
-        menu: ["hello31", "hello32"]
+        stand_id: 1,
+        stand_name: "章魚燒",
+        stand_image: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg",
+        menu_data: [
+            {
+                food_id: 1,
+                food_name: "海苔章魚燒",
+                food_prize: 50,
+                food_image_url: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg"
+            },
+            {
+                food_id: 2,
+                food_name: "原味章魚燒",
+                food_prize: 50,
+                food_image_url: "https://images.chinatimes.com/newsphoto/2020-10-20/1024/20201020004989.jpg"
+            }
+        ]
     }
 ]
