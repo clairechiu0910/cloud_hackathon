@@ -1,4 +1,5 @@
 <html lang="en-GB">
+
 <head>
     <meta charset="utf-8">
 
@@ -8,26 +9,9 @@
 </head>
 
 <body>
-    <div id="gradient"></div>
-    <div id="page">
-        <div id="Message-Container">
-            <div id="message">
-                <h1>Congratulations!</h1>
-                <p>You are done.</p>
-                <p id="moves"></p>
-                <input id="okBtn" type="button" onclick="toggleVisablity('Message-Container')" value="Cool!" />
-            </div>
-        </div>
-        <div id="menu">
-            <div class="custom-select">
-                <select id="diffSelect">
-                    <option value="10">Easy</option>
-                    <option value="15">Medium</option>
-                    <option value="25">Hard</option>
-                    <option value="38">Extreme</option>
-                </select>
-            </div>
-            <input id="startMazeBtn" type="button" onclick="makeMaze()" value="Start" />
+    <div class="container" style="text-align: center;">
+        <div class='bk'>
+            <img id="img_person" src="./images/down.png" style="left:370px; top:490px; position:absolute"/>
         </div>
         <div id="shop-menu">
             <!-- Button trigger modal -->
@@ -65,7 +49,8 @@
                                             <h5>Selected</h5>
                                         </div>
                                         <div class="col-2">
-                                            <button v-on:click="clear_item()" type="button" class="btn btn-secondary btn-sm">Clear</button>
+                                            <button v-on:click="clear_item()" type="button"
+                                                class="btn btn-secondary btn-sm">Clear</button>
                                         </div>
                                     </div>
                                     <template v-for="(item, idx) in select_items">
@@ -103,11 +88,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div id="view">
-            <div id="mazeContainer">
-                <canvas id="mazeCanvas" class="border" height="600" width="600"></canvas>
             </div>
         </div>
     </div>
