@@ -58,10 +58,11 @@ var menu_app = new Vue({
         },
         send_item: function () {
             var order = {
-                stand_idx: this.$data.select_idx,
+                stand_id: this.$data.stand_id,
                 total_charge: this.$data.total_charge,
                 select_items: this.$data.select_items
             };
+            console.log(order);
             axios({
                 method: 'post',
                 url: '/f/index.html',
@@ -78,7 +79,7 @@ var menu_app = new Vue({
         },
         if_near_shand: function (cellCoords) {
             if (cellCoords.x == 9 && cellCoords.y == 9) {
-                this.$data.stand_id = 11;
+                this.$data.stand_id = 12;
                 return true;
             }
             this.$data.stand_id = null;
