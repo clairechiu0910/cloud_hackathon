@@ -30,7 +30,9 @@ function move(e) {
     case 13:
       var storeIndex = getStoreIndex(img.left, img.top);
       console.log("stand id: " + storeIndex);
-      menu_app.show_menu(storeIndex);
+      if (storeIndex != 0) {
+        menu_app.show_menu(storeIndex);
+      }
       break;
 
   }
