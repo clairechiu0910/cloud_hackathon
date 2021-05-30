@@ -19,7 +19,7 @@ var fileServer = new nStatic.Server('./f');
 
 http.createServer(function (request, response) {
     if (request.method == 'POST') {
-        console.log("Request POST");
+        // console.log("Request POST");
 
         request.on('data', function (data) {
             var request_data = JSON.parse(data.toString());
@@ -32,7 +32,7 @@ http.createServer(function (request, response) {
     }
     else if (request.method == 'GET') {
         var pathname = url.parse(request.url).pathname;
-        console.log("Request GET for [" + pathname + "] received.");
+        // console.log("Request GET for [" + pathname + "] received.");
 
         fileServer.serve(request, response);
     }

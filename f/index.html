@@ -9,15 +9,35 @@
 </head>
 
 <body>
-    <div class="container" style="text-align: center;">
+    <div class="container">
         <div class='bk'>
-            <img id="img_person" src="./images/down.png" style="left:370px; top:490px; position:absolute"/>
+            <img id="img_person" src="./images/down.png" style="left:370px; top:490px; position:absolute" />
+        </div>
+        <div class="m-2" style="text-align: right;">
+            <img src="images/chat.png" style="width: 10%;" data-bs-toggle="modal"
+            data-bs-target="#exampleModalLong">
+        </div> 
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">AWS Lex</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        <img src="images/lex.png">
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="shop-menu">
             <!-- Button trigger modal -->
             <button id="modal-button" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#exampleModal" style="display: none;">
-                Launch demo modal
+                data-bs-target="#exampleModal" style="display: ;">
+                Launch menu modal
             </button>
 
             <!-- Modal -->
