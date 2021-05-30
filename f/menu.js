@@ -75,6 +75,11 @@ var menu_app = new Vue({
                 .catch(function (error) {
                     console.log(error);
                 });
+        },
+        lex_order: function(stand_id, food_id){
+            console.log("lex order: "+ stand_id + food_id);
+            this.show_menu(stand_id);
+            this.add_item(food_id);
         }
     }
 })

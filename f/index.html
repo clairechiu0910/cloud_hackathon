@@ -156,8 +156,11 @@
                     waveform.clearCanvas();
                 }
             }, function (data) {
-                condole.log(data);
+                console.log(data);
                 console.log('Transcript: ', data.inputTranscript, ", Response: ", data.message);
+                if (data.message.includes("Thanks")) {
+                    menu_app.lex_order(parseInt(data.sessionAttributes.StandId), parseInt(data.sessionAttributes.FoodId));
+                }
             }, function (error) {
                 message.textContent = error;
             }, function (timeDomain, bufferLength) {
